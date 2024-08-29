@@ -1,0 +1,62 @@
+<style>
+    .centered-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+  
+    .flex-column {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .gap-2 > * + * {
+      margin-top: 1.5rem;
+    }
+  
+    p-floatLabel input {
+      border: 1px solid lightblue;
+      padding: 0.5rem;
+      border-radius: 4px;
+    }
+  
+    .btn-container {
+      margin-top: 0.5rem;
+      display: flex;
+      gap: 1rem;
+    }
+  </style>
+  
+  <div class="centered-container">
+    <div class="flex-column gap-2">
+      <p-floatLabel>
+        <input pInputText id="nome" [(ngModel)]="nome" />
+        <label for="nome">Nome</label>
+      </p-floatLabel>
+      <p-floatLabel>
+        <input type="text" pInputText id="sobrenome" [(ngModel)]="sobrenome" />
+        <label for="sobrenome">Sobrenome</label>
+      </p-floatLabel>
+      <p-floatLabel>
+        <input type="number" pInputText id="idade" [(ngModel)]="idade" />
+        <label for="idade">Idade</label>
+      </p-floatLabel>
+      <div class="btn-container">
+        <p-button
+          label="Voltar"
+          [raised]="true"
+          severity="danger"
+        ></p-button>
+        <a routerLink="/listar">
+          <p-button
+            label="Cadastrar"
+            [raised]="true"
+            severity="success"
+          ></p-button>
+        </a>
+      </div>
+    </div>
+  </div>

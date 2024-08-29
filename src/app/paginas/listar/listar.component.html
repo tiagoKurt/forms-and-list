@@ -1,0 +1,61 @@
+<style>
+    .centered-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+  
+    .flex-column {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .gap-2 > * + * {
+      margin-top: 1.5rem;
+    }
+  
+    p-floatLabel input {
+      border: 1px solid lightblue;
+      padding: 0.5rem;
+      border-radius: 4px;
+    }
+  
+    .btn-container {
+      margin-top: 0.5rem;
+      display: flex;
+      gap: 1rem;
+    }
+  </style>
+
+<div class="card">
+  <p-table [value]="products" [tableStyle]="{ 'min-width': '50rem' }">
+      <ng-template pTemplate="header">
+          <tr>
+              <th>Code</th>
+              <th>Name</th>
+              <th>Category</th>
+              <th>Quantity</th>
+          </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-product>
+          <tr>
+              <td>{{ product.code }}</td>
+              <td>{{ product.name }}</td>
+              <td>{{ product.category }}</td>
+              <td>{{ product.quantity }}</td>
+          </tr>
+      </ng-template>
+  </p-table>
+</div>
+<div class="btn-container">
+<a routerLink="..">
+    <p-button
+      label="Cadastrar"
+      [raised]="true"
+      severity="success"
+    ></p-button>
+  </a>
+</div>
