@@ -3,7 +3,8 @@ import { ListarComponent } from './paginas/listar/listar.component';
 import { FormularioComponent } from './paginas/formulario/formulario.component';
 
 export const routes: Routes = [
-    
-    {path: '', component: FormularioComponent},
-    {path: 'listar', component: ListarComponent}
+
+    {path: 'formulario', component: FormularioComponent},
+    {path: 'listar', component: ListarComponent},
+    {path: 'formulario/:cpf', component: FormularioComponent}
 ];

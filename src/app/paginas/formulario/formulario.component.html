@@ -1,35 +1,3 @@
-<style>
-    .centered-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-    }
-  
-    .flex-column {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-  
-    .gap-2 > * + * {
-      margin-top: 1.5rem;
-    }
-  
-    p-floatLabel input {
-      border: 1px solid lightblue;
-      padding: 0.5rem;
-      border-radius: 4px;
-    }
-  
-    .btn-container {
-      margin-top: 0.5rem;
-      display: flex;
-      gap: 1rem;
-    }
-  </style>
-  
   <div class="centered-container">
     <div class="flex-column gap-2">
       <p-floatLabel>
@@ -44,19 +12,34 @@
         <input type="number" pInputText id="idade" [(ngModel)]="idade" />
         <label for="idade">Idade</label>
       </p-floatLabel>
+      <p-floatLabel>
+        <p-inputMask
+            mask="999.999.999-99"
+            [(ngModel)]="cpf"
+            id="ssn_input" />
+        <label for="ssn_input">CPF</label>
+      </p-floatLabel>
+      <div class="card flex justify-content-center">
+        <p-dropdown
+            [options]="sexos"
+            [(ngModel)]="selectedSexo"
+            optionLabel="sexo"
+            placeholder="Selecione o sexo" />
+      </div>
       <div class="btn-container">
+        <a routerLink="/listar">
         <p-button
           label="Voltar"
           [raised]="true"
           severity="danger"
         ></p-button>
-        <a routerLink="/listar">
+        </a>
           <p-button
             label="Cadastrar"
             [raised]="true"
             severity="success"
+            (click)="cadastrar()"
           ></p-button>
-        </a>
       </div>
     </div>
   </div>

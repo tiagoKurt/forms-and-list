@@ -1,6 +1,7 @@
-export interface Product {
-    code: string;
-    name: string;
-    category: string;
-    quantity: number;
+export interface Pessoa {
+    nome: string;
+    sobrenome: string;
+    cpf: string;
+    idade: number;
+    sexo: string;
 }

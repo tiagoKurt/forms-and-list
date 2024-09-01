@@ -4,8 +4,11 @@ import { ButtonModule } from 'primeng/button';
 import { TagModule } from 'primeng/tag';
 import { CommonModule } from '@angular/common';
 import { TableModule } from 'primeng/table';
-import { Product } from '../formulario/formulario.types';
-
+import { Pessoa } from '../formulario/formulario.types';
+import { FormularioServiceService } from '../formulario/formulario.service.service';
+import { RouterModule } from '@angular/router';
+import { DialogModule } from 'primeng/dialog';
+import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-listar',
   standalone: true,
@@ -13,22 +16,26 @@ import { Product } from '../formulario/formulario.types';
     TagModule,
     CommonModule,
     CardModule,
-    TableModule,],
+    TableModule,
+    RouterModule,
+    DialogModule,
+    FormsModule
+  ],
   templateUrl: './listar.component.html',
   styleUrl: './listar.component.scss'
 })
 export class ListarComponent implements OnInit{
-  products!: Product[];
-  
-  constructor(){}
-  
-  ngOnInit(){
-    this.products = [
-      { code: 'P001', name: 'Product 1', category: 'Category A', quantity: 10 },
-      { code: 'P002', name: 'Product 2', category: 'Category B', quantity: 20 },
-      { code: 'P003', name: 'Product 3', category: 'Category C', quantity: 30 },
-      { code: 'P004', name: 'Product 4', category: 'Category A', quantity: 40 }
-  ];
+  pessoas: Pessoa[] = [];
+
+  constructor(private formularioService: FormularioServiceService) {}
+
+  ngOnInit() {
+    this.pessoas = this.formularioService.obterPessoas();
   }
-  
+
+  excluirPessoa(cpf: string){
+    this.formularioService.excluirPessoa(cpf);
+    this.pessoas = this.formularioService.obterPessoas();
+  }
+
 }
