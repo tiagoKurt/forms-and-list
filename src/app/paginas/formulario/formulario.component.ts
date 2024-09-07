@@ -7,71 +7,61 @@ import { ToastModule } from 'primeng/toast';
 import { ButtonModule } from 'primeng/button';
 import { DropdownModule } from 'primeng/dropdown';
 import { FormularioServiceService } from './formulario.service.service';
-import { Pessoa } from './formulario.types';
-import { ActivatedRoute } from '@angular/router';
+import { IPessoa } from './formulario.types';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { InputMaskModule } from 'primeng/inputmask';
 
 interface Sexo {
-    sexo: string;
+  sexo: string;
 }
+
 @Component({
   selector: 'app-formulario',
   standalone: true,
-  imports: [FormsModule,
+  imports: [
+    FormsModule,
     InputTextModule,
     FloatLabelModule,
     MenubarModule,
     ToastModule,
     ButtonModule,
     DropdownModule,
-    InputMaskModule
-    ],
+    InputMaskModule,
+    RouterModule
+  ],
   templateUrl: './formulario.component.html',
   styleUrl: './formulario.component.scss'
 })
 export class FormularioComponent implements OnInit {
-  sexos: { sexo: string }[] | undefined;
-  nome: string | undefined;
-  sobrenome: string | undefined;
-  idade: number | undefined;
-  cpf: string | undefined;
-  selectedSexo: { sexo: string } | undefined;
-  pessoa: Pessoa | undefined;
+  sexos: Sexo[] = [
+    { sexo: 'Masculino' },
+    { sexo: 'Feminino' }
+  ];
+
   formDesabilitado = false;
-  constructor(private formularioService: FormularioServiceService, private route: ActivatedRoute) {}
+
+  pessoas: IPessoa[] = [];
+
+  pessoa: IPessoa = { nome: '', sobrenome: '', idade: null, sexo: '', cpf: '' }
+
+  constructor(
+    private formularioService: FormularioServiceService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit() {
-    this.sexos = [
-      { sexo: 'Masculino' },
-      { sexo: 'Feminino' }
-    ];
-
     const cpf = this.route.snapshot.paramMap.get('cpf');
     if (cpf) {
-      this.pessoa = this.formularioService.obterPessoaPorCpf(cpf);
+      // this.pessoa = this.formularioService.obterPessoaPorCpf(cpf);
       this.formDesabilitado = true;
     }
   }
 
   cadastrar(): void {
-    if (this.nome && this.sobrenome && this.idade && this.selectedSexo && this.cpf) {
-      const novaPessoa: Pessoa = {
-        nome: this.nome,
-        sobrenome: this.sobrenome,
-        idade: this.idade,
-        sexo: this.selectedSexo.sexo,
-        cpf: this.cpf
-      };
-
-      this.formularioService.adicionarPessoa(novaPessoa);
-
-      // Limpa os campos após o cadastro
-      this.nome = undefined;
-      this.sobrenome = undefined;
-      this.idade = undefined;
-      this.selectedSexo = undefined;
-      this.cpf = undefined;
-    }
+    this.formularioService.criarPessoa(this.pessoa).subscribe(
+      (resposta) => {
+        this.pessoa = { nome: '', sobrenome: '', idade: null, sexo: '', cpf: '' }; // Reseta idade para null
+      }
+    );
   }
-
 }

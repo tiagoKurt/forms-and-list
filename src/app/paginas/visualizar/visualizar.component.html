@@ -1,30 +1,33 @@
 <div class="centered-container">
   <div class="flex-column gap-2">
     <p-floatLabel>
-      <input pInputText id="nome" [(ngModel)]="pessoa.nome" />
+      <input pInputText id="nome" [ngModel]="pessoa?.nome" disabled="true"/>
       <label for="nome">Nome</label>
     </p-floatLabel>
     <p-floatLabel>
-      <input type="text" pInputText id="sobrenome" [(ngModel)]="pessoa.sobrenome" />
+      <input type="text" pInputText id="sobrenome" [ngModel]="pessoa?.sobrenome" disabled="true"/>
       <label for="sobrenome">Sobrenome</label>
     </p-floatLabel>
     <p-floatLabel>
-      <input type="number" pInputText id="idade" [(ngModel)]="pessoa.idade" />
+      <input type="number" pInputText id="idade" [ngModel]="pessoa?.idade" disabled="true"/>
       <label for="idade">Idade</label>
     </p-floatLabel>
     <p-floatLabel>
       <p-inputMask
         mask="999.999.999-99"
-        [(ngModel)]="pessoa.cpf"
-        id="cpf_input" />
+        [ngModel]="pessoa?.cpf"
+        id="cpf_input"
+        disabled="true"/>
       <label for="cpf_input">CPF</label>
     </p-floatLabel>
     <div class="card flex justify-content-center">
       <p-dropdown
         [options]="sexos"
-        [(ngModel)]="pessoa.sexo"
+        [ngModel]="pessoa?.sexo"
         optionLabel="sexo"
-        placeholder="Selecione o sexo" />
+        placeholder="Selecione o sexo"
+        [disabled]="true"
+        />
     </div>
     <div class="btn-container">
         <p-button
@@ -33,12 +36,6 @@
           severity="danger"
           [routerLink]="['/']">
         </p-button>
-      <p-button
-        label="Cadastrar"
-        [raised]="true"
-        severity="success"
-        (click)="cadastrar()">
-      </p-button>
     </div>
   </div>
 </div>

@@ -1,7 +1,7 @@
-export interface Pessoa {
+export interface IPessoa {
     nome: string;
     sobrenome: string;
     cpf: string;
-    idade: number;
+    idade: number |null;
     sexo: string;
 }

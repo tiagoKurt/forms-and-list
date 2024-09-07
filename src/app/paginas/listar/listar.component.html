@@ -15,16 +15,16 @@
           <th>Ações</th>
         </tr>
       </ng-template>
-      <ng-template pTemplate="body" let-pessoas>
+      <ng-template pTemplate="body" let-pessoa>
         <tr>
-          <td>{{ pessoas.nome }}</td>
-          <td>{{ pessoas.sobrenome }}</td>
-          <td>{{ pessoas.idade }}</td>
-          <td>{{ pessoas.sexo }}</td>
-          <td>{{ pessoas.cpf }}</td>
+          <td>{{ pessoa.nome }}</td>
+          <td>{{ pessoa.sobrenome }}</td>
+          <td>{{ pessoa.idade }}</td>
+          <td>{{ pessoa.sexo.sexo }}</td>
+          <td>{{ pessoa.cpf }}</td>
           <td>
-            <p-button icon="pi pi-trash" [rounded]="true" (click)="excluirPessoa(pessoas.cpf)"></p-button>
-            <p-button icon="pi pi-eye" [rounded]="true" [routerLink]="['/formulario', pessoas.cpf]" ></p-button>
+            <p-button icon="pi pi-trash" [rounded]="true"></p-button>
+            <p-button icon="pi pi-eye" [rounded]="true" [routerLink]="['/visualizar',pessoa.cpf]"></p-button>
           </td>
         </tr>
       </ng-template>
