@@ -9,7 +9,7 @@
       <label for="sobrenome">Sobrenome</label>
     </p-floatLabel>
     <p-floatLabel>
-      <input type="number" pInputText id="idade" [(ngModel)]="pessoa.idade" />
+      <input type="number" pInputText id="idade" [(ngModel)]="pessoa.idade" maxlength="2" (keypress)="validateAgeInput($event)" />
       <label for="idade">Idade</label>
     </p-floatLabel>
     <p-floatLabel>
@@ -27,12 +27,13 @@
         placeholder="Selecione o sexo" />
     </div>
     <div class="btn-container">
-        <p-button
-          label="Voltar"
-          [raised]="true"
-          severity="danger"
-          [routerLink]="['/']">
-        </p-button>
+      <p-toast />
+      <p-button
+        label="Voltar"
+        [raised]="true"
+        severity="danger"
+        [routerLink]="['/']">
+      </p-button>
       <p-button
         label="Cadastrar"
         [raised]="true"

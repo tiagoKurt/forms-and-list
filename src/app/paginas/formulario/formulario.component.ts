@@ -10,6 +10,7 @@ import { FormularioServiceService } from './formulario.service.service';
 import { IPessoa } from './formulario.types';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { InputMaskModule } from 'primeng/inputmask';
+import { MessageService } from 'primeng/api';
 
 interface Sexo {
   sexo: string;
@@ -29,6 +30,7 @@ interface Sexo {
     InputMaskModule,
     RouterModule
   ],
+  providers: [MessageService],
   templateUrl: './formulario.component.html',
   styleUrl: './formulario.component.scss'
 })
@@ -42,11 +44,12 @@ export class FormularioComponent implements OnInit {
 
   pessoas: IPessoa[] = [];
 
-  pessoa: IPessoa = { nome: '', sobrenome: '', idade: null, sexo: '', cpf: '' }
+  pessoa: IPessoa = { id: null, nome: '', sobrenome: '', idade: null, sexo: '', cpf: '' }
 
   constructor(
     private formularioService: FormularioServiceService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private messageService: MessageService
   ) {}
 
   ngOnInit() {
@@ -60,8 +63,18 @@ export class FormularioComponent implements OnInit {
   cadastrar(): void {
     this.formularioService.criarPessoa(this.pessoa).subscribe(
       (resposta) => {
-        this.pessoa = { nome: '', sobrenome: '', idade: null, sexo: '', cpf: '' }; // Reseta idade para null
-      }
-    );
+        this.messageService.add({ severity: 'success', summary: 'Concluido!', detail: 'Usuario: '+ this.pessoa.nome+', foi cadatrada com sucesso!' });
+        this.pessoa = { id: null, nome: '', sobrenome: '', idade: null, sexo: '', cpf: '' };
+
+      }, error => {
+        this.messageService.add({ severity: 'error', summary: 'Erro!', detail: 'Falha ao cadastrar o usuário.' });
+      });
+  }
+
+  validateAgeInput(event: KeyboardEvent) {
+    const input = event.target as HTMLInputElement;
+    if (input.value.length >= 2 && event.key !== 'Backspace') {
+      event.preventDefault();
+    }
   }
 }

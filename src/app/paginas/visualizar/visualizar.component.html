@@ -1,15 +1,27 @@
 <div class="centered-container">
   <div class="flex-column gap-2">
     <p-floatLabel>
-      <input pInputText id="nome" [ngModel]="pessoa?.nome" disabled="true"/>
+      <input pInputText id="nome" [ngModel]="pessoa?.nome" disabled="true" />
       <label for="nome">Nome</label>
     </p-floatLabel>
     <p-floatLabel>
-      <input type="text" pInputText id="sobrenome" [ngModel]="pessoa?.sobrenome" disabled="true"/>
+      <input
+        type="text"
+        pInputText
+        id="sobrenome"
+        [ngModel]="pessoa?.sobrenome"
+        disabled="true"
+      />
       <label for="sobrenome">Sobrenome</label>
     </p-floatLabel>
     <p-floatLabel>
-      <input type="number" pInputText id="idade" [ngModel]="pessoa?.idade" disabled="true"/>
+      <input
+        type="number"
+        pInputText
+        id="idade"
+        [ngModel]="pessoa?.idade"
+        disabled="true"
+      />
       <label for="idade">Idade</label>
     </p-floatLabel>
     <p-floatLabel>
@@ -17,7 +29,8 @@
         mask="999.999.999-99"
         [ngModel]="pessoa?.cpf"
         id="cpf_input"
-        disabled="true"/>
+        disabled="true"
+      />
       <label for="cpf_input">CPF</label>
     </p-floatLabel>
     <div class="card flex justify-content-center">
@@ -27,15 +40,24 @@
         optionLabel="sexo"
         placeholder="Selecione o sexo"
         [disabled]="true"
-        />
+      />
     </div>
     <div class="btn-container">
-        <p-button
-          label="Voltar"
-          [raised]="true"
-          severity="danger"
-          [routerLink]="['/']">
-        </p-button>
+      <p-toast />
+      <p-button
+        label="Voltar"
+        [raised]="true"
+        severity="success"
+        [routerLink]="['/']"
+      >
+      </p-button>
+      <p-button
+        label="Excluir"
+        [raised]="true"
+        severity="danger"
+        (click)="excluirPessoa()"
+      >
+      </p-button>
     </div>
   </div>
 </div>

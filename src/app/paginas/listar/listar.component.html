@@ -4,6 +4,7 @@
 
 <div class="centered-container">
   <div class="card table-container">
+
     <p-table [value]="pessoas" [tableStyle]="{ 'min-width': '40rem' }" [scrollable]="true" scrollHeight="380px">
       <ng-template pTemplate="header">
         <tr>
@@ -23,8 +24,8 @@
           <td>{{ pessoa.sexo.sexo }}</td>
           <td>{{ pessoa.cpf }}</td>
           <td>
-            <p-button icon="pi pi-trash" [rounded]="true"></p-button>
-            <p-button icon="pi pi-eye" [rounded]="true" [routerLink]="['/visualizar',pessoa.cpf]"></p-button>
+            <p-toast />
+            <p-button icon="pi pi-eye" [rounded]="true" [routerLink]="['/visualizar',pessoa.id]"></p-button>
           </td>
         </tr>
       </ng-template>

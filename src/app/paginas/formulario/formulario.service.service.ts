@@ -29,8 +29,8 @@ export class FormularioServiceService {
     }
   }
 
-  deletarPessoa(cpf: string): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${cpf}`);
+  deletarPessoa(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 
 }

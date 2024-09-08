@@ -9,6 +9,8 @@ import { FormularioServiceService } from '../formulario/formulario.service.servi
 import { RouterModule } from '@angular/router';
 import { DialogModule } from 'primeng/dialog';
 import { FormsModule } from '@angular/forms';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 @Component({
   selector: 'app-listar',
   standalone: true,
@@ -19,26 +21,24 @@ import { FormsModule } from '@angular/forms';
     TableModule,
     RouterModule,
     DialogModule,
-    FormsModule
+    FormsModule,
+    ToastModule
   ],
+  providers: [MessageService],
   templateUrl: './listar.component.html',
   styleUrl: './listar.component.scss'
 })
 export class ListarComponent implements OnInit{
   pessoas: IPessoa[] = [];
 
-  constructor(private formularioService: FormularioServiceService) {}
+  constructor(private formularioService: FormularioServiceService,
+    private messageService: MessageService
+  ) {}
 
   ngOnInit() {
     this.formularioService.getPessoas().subscribe((data: IPessoa[]) => {
       this.pessoas = data;
     });
   }
-
-  // excluirPessoa(cpf: string): void {
-  //   this.formularioService.deletarPessoa(cpf).subscribe(() => {
-  //     this.pessoas = this.pessoas.filter(p => p.cpf !== cpf);
-  //   });
-  // }
 
 }
