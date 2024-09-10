@@ -61,12 +61,14 @@ export class FormularioComponent implements OnInit {
   }
 
   cadastrar(): void {
+
     this.formularioService.criarPessoa(this.pessoa).subscribe(
       (resposta) => {
         this.messageService.add({ severity: 'success', summary: 'Concluido!', detail: 'Usuario: '+ this.pessoa.nome+', foi cadatrada com sucesso!' });
         this.pessoa = { id: null, nome: '', sobrenome: '', idade: null, sexo: '', cpf: '' };
 
       }, error => {
+        console.log(this.pessoa.nome)
         this.messageService.add({ severity: 'error', summary: 'Erro!', detail: 'Falha ao cadastrar o usuário.' });
       });
   }

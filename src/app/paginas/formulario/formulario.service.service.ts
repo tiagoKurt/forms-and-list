@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class FormularioServiceService {
 
-  apiUrl = 'http://localhost:3000/pessoas'
+  apiUrl = 'http://localhost:8080/pessoas/'
 
   private pessoas: IPessoa[] = [];
   constructor(private http : HttpClient) { }
@@ -30,7 +30,7 @@ export class FormularioServiceService {
   }
 
   deletarPessoa(id: string): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+    return this.http.delete<void>(`${this.apiUrl}${id}`);
   }
 
 }

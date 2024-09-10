@@ -1,5 +1,5 @@
 export interface IPessoa {
-    id: string | null;
+    id: number | null;
     nome: string;
     sobrenome: string;
     cpf: string ;

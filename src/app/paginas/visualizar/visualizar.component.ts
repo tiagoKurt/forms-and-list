@@ -46,14 +46,13 @@ export class VisualizarComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
       this.formularioService.getPessoas().subscribe((pessoas) => {
-        this.pessoa = pessoas.find((p) => p.id === id);
+        this.pessoa = pessoas.find((p) => p.id === parseInt(id));
       });
     }
   }
 
   excluirPessoa(): void {
     const id = this.route.snapshot.paramMap.get('id');
-    console.log('chegou');
     if (id) {
       this.formularioService.deletarPessoa(id).subscribe(
         () => {
